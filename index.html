@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>顶刊式转译</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <h1>输入任何内容，给你顶刊的表达方式</h1>
+      </section>
+
+      <section class="translator" aria-label="顶刊式表达转译器">
+        <form id="rewriteForm" class="rewrite-form">
+          <label class="field">
+            <span>原句</span>
+            <textarea
+              id="sourceText"
+              rows="5"
+              placeholder="例如：我今天真的不想上班。"
+            ></textarea>
+          </label>
+
+          <div class="examples" aria-label="示例">
+            <button type="button" data-example="普通人想要翻身，记得买一根一米二的充电线">
+              普通人想要翻身，记得买一根一米二的充电线
+            </button>
+            <button type="button" data-example="今天是星期四，记得 v 我 50">
+              今天是星期四，记得 v 我 50
+            </button>
+            <button type="button" data-example="一只黄狗因为学会说“这个需求帮我做一下”，成功晋升成了产品经理">
+              一只黄狗因为学会说“这个需求帮我做一下”，成功晋升成了产品经理
+            </button>
+          </div>
+
+          <button class="submit-btn" type="submit" id="submitBtn">
+            转译
+          </button>
+        </form>
+
+        <section class="output" aria-live="polite">
+          <div class="loading-visual" id="loadingVisual" aria-hidden="true">
+            <i></i>
+            <i></i>
+            <i></i>
+            <span></span>
+          </div>
+          <div class="output-top">
+            <span>顶刊式表达</span>
+            <button type="button" id="copyBtn" class="copy-btn" disabled>复制</button>
+          </div>
+          <p id="resultText" class="placeholder">等待输入。</p>
+        </section>
+      </section>
+    </main>
+
+    <div class="toast" id="toast"></div>
+    <script src="./script.js"></script>
+  </body>
+</html>

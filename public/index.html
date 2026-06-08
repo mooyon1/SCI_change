@@ -6,52 +6,95 @@
     <title>顶刊式转译</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body>
+  <body class="page">
     <main class="shell">
-      <section class="hero">
-        <h1>输入任何内容，给你顶刊的表达方式</h1>
-      </section>
+      <section class="app-frame" aria-label="顶刊式表达转译器">
+        <section class="view view-input is-active" id="inputView">
+          <section class="hero-card soft-card">
+            <div class="intro-card">
+              <div>
+                <p class="hi">Hi，</p>
+                <h1>我能帮你把人话改为顶刊腔</h1>
+                <p class="subtitle">输入日常表达，我帮你改写成顶刊话术。</p>
+              </div>
+              <div class="pen-orb" aria-hidden="true">
+                <span></span>
+              </div>
+            </div>
 
-      <section class="translator" aria-label="顶刊式表达转译器">
-        <form id="rewriteForm" class="rewrite-form">
-          <label class="field">
+            <div class="examples" aria-label="示例">
+              <button class="example-card" type="button" data-example="普通人想要翻身，记得买一根一米二的充电线">
+                <span>普通人想要翻身，记得买一根一米二的充电线</span>
+                <i class="cable-art" aria-hidden="true"></i>
+              </button>
+              <button class="example-card" type="button" data-example="今天是星期四，记得 v 我 50">
+                <span>今天是星期四，记得 v 我 50</span>
+                <i class="money-art" aria-hidden="true">¥50</i>
+              </button>
+              <button class="example-card" type="button" data-example="一只黄狗因为学会说“这个需求帮我做一下”，成功晋升成了产品经理">
+                <span>一只黄狗因为学会说“这个需求帮我做一下”，成功晋升成了产品经理</span>
+                <i class="role-art" aria-hidden="true"></i>
+              </button>
+            </div>
+          </section>
+
+          <form id="rewriteForm" class="rewrite-form">
+            <label class="input-card soft-card" id="inputCard">
+              <span>输入你想改的内容</span>
+              <textarea id="sourceText" rows="4" maxlength="200" placeholder="今天是星期四，记得 v 我 50"></textarea>
+              <em id="counter">0/200</em>
+            </label>
+
+            <div class="review-loader" id="reviewLoader" aria-hidden="true">
+              <i></i>
+              <span>编辑部正在交叉审稿</span>
+            </div>
+            <button class="submit-btn" type="submit" id="submitBtn">
+              <span id="submitText">一键送审</span>
+            </button>
+          </form>
+        </section>
+
+        <section class="view view-result" id="resultView" aria-live="polite">
+          <article class="source-card soft-card">
             <span>原句</span>
-            <textarea
-              id="sourceText"
-              rows="5"
-              placeholder="例如：我今天真的不想上班。"
-            ></textarea>
-          </label>
+            <p id="sourcePreview"></p>
+          </article>
 
-          <div class="examples" aria-label="示例">
-            <button type="button" data-example="普通人想要翻身，记得买一根一米二的充电线">
-              普通人想要翻身，记得买一根一米二的充电线
-            </button>
-            <button type="button" data-example="今天是星期四，记得 v 我 50">
-              今天是星期四，记得 v 我 50
-            </button>
-            <button type="button" data-example="一只黄狗因为学会说“这个需求帮我做一下”，成功晋升成了产品经理">
-              一只黄狗因为学会说“这个需求帮我做一下”，成功晋升成了产品经理
-            </button>
-          </div>
+          <article class="result-card soft-card">
+            <div class="result-sparkles" aria-hidden="true">
+              <i></i>
+              <i></i>
+              <i></i>
+            </div>
+            <span>顶刊版表述</span>
+            <p id="resultText"></p>
+            <div class="paper-ghost" aria-hidden="true"></div>
+            <div class="result-actions">
+              <button type="button" class="action-btn" id="copyBtn">复制</button>
+              <button type="button" class="action-btn regen-btn" id="regenBtn">
+                <i class="icon" aria-hidden="true"></i>
+                再来一版
+              </button>
+            </div>
+          </article>
 
-          <button class="submit-btn" type="submit" id="submitBtn">
-            转译
-          </button>
-        </form>
+          <article class="editorial-card soft-card">
+            <div class="vote-burst" id="voteBurst" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <div>
+              <strong>编辑部意见</strong>
+              <p id="editorialText">这稿子有内味儿了。</p>
+            </div>
+            <div class="vote-row">
+              <button type="button" class="vote-btn accept" id="acceptBtn">过稿</button>
+              <button type="button" class="vote-btn reject" id="rejectBtn">退稿</button>
+            </div>
+          </article>
 
-        <section class="output" aria-live="polite">
-          <div class="loading-visual" id="loadingVisual" aria-hidden="true">
-            <i></i>
-            <i></i>
-            <i></i>
-            <span></span>
-          </div>
-          <div class="output-top">
-            <span>顶刊式表达</span>
-            <button type="button" id="copyBtn" class="copy-btn" disabled>复制</button>
-          </div>
-          <p id="resultText" class="placeholder">等待输入。</p>
+          <div class="accept-note" id="acceptNote">已过稿，拟同意发表</div>
+          <button type="button" class="resubmit-btn" id="resubmitBtn">重新投稿</button>
         </section>
       </section>
     </main>

@@ -3,6 +3,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const root = __dirname;
+const publicRoot = path.join(root, "public");
 const envPath = path.join(root, ".env");
 
 if (fs.existsSync(envPath)) {
@@ -101,9 +102,9 @@ async function rewriteText(text) {
 function serveStatic(req, res) {
   const url = new URL(req.url, `http://${req.headers.host}`);
   const safePath = url.pathname === "/" ? "/index.html" : decodeURIComponent(url.pathname);
-  const filePath = path.normalize(path.join(root, safePath));
+  const filePath = path.normalize(path.join(publicRoot, safePath));
 
-  if (!filePath.startsWith(root)) {
+  if (!filePath.startsWith(publicRoot)) {
     res.writeHead(403);
     res.end("Forbidden");
     return;
